@@ -60,7 +60,7 @@ if user_answer == "K":
 
     if ilma_alus_input == "lentokone":d
 wdawd
-
+jgjgj
 
 
 
