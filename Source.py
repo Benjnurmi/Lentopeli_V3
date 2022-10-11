@@ -164,4 +164,4 @@ elif user_answer == "E":
 
 
 
-#Tomin koodit ylhääl
+#Tomin koodit ylhäällä
