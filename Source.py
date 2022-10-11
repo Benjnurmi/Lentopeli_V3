@@ -59,7 +59,7 @@ if user_answer == "K":
     print(f"{ilma_alus_input} lähtee kohteesta {valittu_kenttä} ")
 
     if ilma_alus_input == "lentokone":d
-
+wdawd
 
 
 
