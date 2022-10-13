@@ -48,8 +48,8 @@ if user_answer == "K":
         host='127.0.0.1',
         port=3306,
         database='flight_game',
-        user='tomih',
-        password='salasana123',
+        user='benjamn',
+        password='Metrolippu22',
         autocommit=True
     )
 
@@ -80,8 +80,9 @@ if user_answer == "K":
         # print(random_kentät)
 
 
-    #  me_consumed = '0';T co2
-    # UPDATE ga  SE
+
+    # UPDATE game
+    # SET co2_consumed = '0';
 
     def co2_usage():
         co2_lista = []
@@ -109,8 +110,16 @@ if user_answer == "K":
         print(f"Valitsit matkan kohteeksi {maailman_lentokentät[4]}")
 
     print(f"Lähtökentän sijainti on {valittu_kenttä[1:3]}")
-    print(f"Matkan kohteen sijainti ")
+    print(f"Matkan kohteen sijainti on {maailman_lentokentät[1:3]} ")
+    """valittu_kenttä[1:3] = lähtökenttä
+    maailman_lentokentät[1:3] = määränpää"""
+    import geopy.distance
 
+    coords_1 = (52.2296756, 21.0122287)
+    coords_2 = (52.406374, 16.9251681)
+
+
+    print(geopy.distance.geodesic(coords_1, coords_2).km)
 
 
 
@@ -163,5 +172,4 @@ elif user_answer == "E":
 
 
 
-
-#Tomin koodit ylhäällä lolol
+# Helvetti oikeesti
