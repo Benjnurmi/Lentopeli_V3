@@ -2,6 +2,15 @@ import mysql.connector
 import random
 import geopy.distance
 
+yhteys = mysql.connector.connect(  # sql yhteys
+    host='127.0.0.1',
+    port=3306,
+    database='flight_game',
+    user='benjamn',
+    password='Metrolippu23',
+    autocommit=True
+)
+
 
 """random = ["dd", "ggg", "lll"]
 print(f"syötä mihin kenttään haluat lentää {random}")
@@ -44,14 +53,7 @@ if user_answer == "K":
             print("Syötä ilma-alus uudelleen")
 
 
-    yhteys = mysql.connector.connect(   #  sql yhteys
-        host='127.0.0.1',
-        port=3306,
-        database='flight_game',
-        user='benjamn',
-        password='Metrolippu23',
-        autocommit=True
-    )
+
 
     suomen_lentokentät = []  # lista suomessa sijaitsevista lentokentistä
     sql1 = "SELECT name, latitude_deg, longitude_deg FROM airport WHERE iso_country = 'FI'"
@@ -94,7 +96,6 @@ if user_answer == "K":
             print(f"{rivi[0]}")
 
 
-
     print("Valitse seuraavasta listasta mihin haluat lentää! ")
     print(maailman_lentokentät)
     matka1_input = input("Syötä numero (1-5):  ")
@@ -109,13 +110,12 @@ if user_answer == "K":
     elif matka1_input == "5":
         print(f"Valitsit matkan kohteeksi {maailman_lentokentät[4]}")
 
-    print(f"Lähtökentän sijainti on {valittu_kenttä[1:3]}")
-    print(f"Matkan kohteen sijainti on {maailman_lentokentät[1:3]} ")
+    #print(f"Lähtökentän sijainti on {valittu_kenttä[1:2]}")
+    #print(f"Matkan kohteen sijainti on {maailman_lentokentät[1:3]} ")
     """valittu_kenttä[1:3] = lähtökenttä
     maailman_lentokentät[1:3] = määränpää"""
-    import geopy.distance
 
-    coords_1 = (52.2296756, 21.0122287)
+    coords_1 = (valittu_kenttä[1:3])
     coords_2 = (52.406374, 16.9251681)
 
 
