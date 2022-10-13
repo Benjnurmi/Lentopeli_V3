@@ -49,7 +49,7 @@ if user_answer == "K":
         port=3306,
         database='flight_game',
         user='benjamn',
-        password='Metrolippu22',
+        password='Metrolippu23',
         autocommit=True
     )
 
@@ -121,55 +121,3 @@ if user_answer == "K":
 
     print(geopy.distance.geodesic(coords_1, coords_2).km)
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    """if ilma_alus_input == "lentokone":"""
-
-
-
-
-
-
-
-
-
-
-
-
-elif user_answer == "E":
-    print("Lopetit pelin!")
-    print("Haluatko antaa palautetta? ")
-    print("Syötä K jos haluat antaa palautetta tai syötä E jos et halua antaa palautetta.")
-    user_help_answer = input("Haluatko antaa palautetta (K / E)? ").upper()
-    if user_help_answer == "K":
-        input("Anna palautetta: ")
-        print("Kiitos palautteesta!")
-    elif user_help_answer == "E":
-        print("Peli ohi")
-
-
-
-
-
-
-
-
-
-# Helvetti oikeestii
