@@ -118,6 +118,5 @@ if user_answer == "K":
     coords_1 = (valittu_kenttä[1:3])
     coords_2 = (52.406374, 16.9251681)
 
-
     print(geopy.distance.geodesic(coords_1, coords_2).km)
 
