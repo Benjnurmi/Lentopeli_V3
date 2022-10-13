@@ -1,0 +1,189 @@
+import mysql.connector
+import random
+import geopy.distance
+
+
+
+
+
+ilma_alukset = ["lentokone", "vesitaso", "helikopteri"]  # lista, jossa on pelissä käytettävät ilma-alukset
+
+
+print("syötä K jos haluat pelata peliä")
+print("syötä E jos et halua pelata peliä")
+user_answer = input("Syötä K tai E: ").upper()  # Haluaako pelata vai ei?
+if user_answer == "K":
+    print("Tervetuloa lentopeliin")
+    print("Valitse ilma-alus:")
+    print(f"Lista ilma-aluksista: {ilma_alukset}")  # lista ilma-aluksista
+    ilma_alus_input = ""
+    while ilma_alus_input != "lentokone" or "vesitaso" or "helikopteri":
+        ilma_alus_input = input("Syötä ilma-alus: ").lower()  # ilma-aluksen valinta
+        if ilma_alus_input == "lentokone":  # jos pelaaja  valitsee lentokoneen
+            print("valitsit cesna 172 lentokoneen")
+            print("cesna 172 on lentokone, jolla voi lentää kerralla maksimissaan 1185 km pitkän matkan")
+            break
+        elif ilma_alus_input == "vesitaso":  # jos pelaaja valitsee vesitason
+            print("valitsit cesna 185 vesitason")
+            print("cesna 185 on vesitaso, jolla voi lentää kerralla maksimissaan 933 km pitkän matkan")
+            break
+        elif ilma_alus_input == "helikopteri":  # jos pelaaja valitsee helikopterin
+            print("valitsit airbus H135 helikopterin")
+            print("airbus H135 on helikopteri, jolla voi lentää kerralla maksimissaan 633 km pitkän matkan")
+            break
+        else:
+            print("Virheellinen ilma-alus")  # jos pelaaja syöttää virheellisen ilma-aluksen
+            print("Syötä ilma-alus uudelleen")
+
+
+    yhteys = mysql.connector.connect(   #  sql yhteys
+        host='127.0.0.1',
+        port=3306,
+        database='flight_game',
+        user='tomih',
+        password='salasana123',
+        autocommit=True
+    )
+
+    suomen_lentokentät = []  # lista suomessa sijaitsevista lentokentistä
+    sql1 = "SELECT name, latitude_deg, longitude_deg FROM airport WHERE iso_country = 'FI'"
+    kursori = yhteys.cursor()
+    kursori.execute(sql1)
+    tulos1 = kursori.fetchall()
+    """for rivi in tulos1:
+        print(f"{rivi[0]}")"""
+
+    valittu_kenttä = random.choice(tulos1)
+    # print(valittu_kenttä)
+
+    print(f"{ilma_alus_input} lähtee kohteesta {valittu_kenttä[0:3]} ")
+
+
+    maailman_lentokentät = []
+    sql2 = "SELECT name, latitude_deg, longitude_deg FROM airport"
+    kursori1 = yhteys.cursor()
+    kursori1.execute(sql2)
+    tulos2 = kursori1.fetchall()
+
+    # print(maailman_lentokentät)
+    """for n  in range (5):
+        random_kentät = random.choice(tulos2)
+        maailman_lentokentät.append(random_kentät)
+        # print(random_kentät)"""
+    matkan_päämäärä = random.choice(tulos2)
+
+
+
+    # UPDATE game
+    # SET co2_consumed = '0';
+
+    def co2_usage():
+        co2_lista = []
+        sql3 = "SELECT co2_consumed, co2_budget FROM game"
+        kursori2 = yhteys.cursor()
+        kursori2.execute(sql3)
+        tulos3 = kursori2.fetchall()
+        for rivi in tulos3:
+            print(f"{rivi[0]}")
+
+
+
+    """print("Valitse seuraavasta listasta mihin haluat lentää! ")
+    print(maailman_lentokentät)
+    matka1_input = input("Syötä numero (1-5):  ")
+    if matka1_input == "1":
+        print(f"Valitsit matkan kohteeksi {maailman_lentokentät[0]}")
+    elif matka1_input == "2":
+        print(f"Valitsit matkan kohteeksi {maailman_lentokentät[1]}")
+    elif matka1_input == "3":
+        print(f"Valitsit matkan kohteeksi {maailman_lentokentät[2]}")
+    elif matka1_input == "4":
+        print(f"Valitsit matkan kohteeksi {maailman_lentokentät[3]}")
+    elif matka1_input == "5":
+        print(f"Valitsit matkan kohteeksi {maailman_lentokentät[4]}")"""
+
+    print(f"Lähtökentän sijainti on {valittu_kenttä[0]}")
+    print(f"Matkan kohteen sijainti on {matkan_päämäärä[0]} ")
+    """valittu_kenttä[1:3] = lähtökenttä
+    maailman_lentokentät[1:3] = määränpää"""
+    
+
+    coords_1 = (valittu_kenttä[1:3])
+    # print(maailman_lentokentät[1:3])
+    coords_2 = (maailman_lentokentät[1:3])
+
+
+    # print(geopy.distance.geodesic(coords_1, coords_2).km)
+
+    matkojen_etäisyys_km = geopy.distance.geodesic(coords_1, coords_2).km
+    # print(matkojen_etäisyys_km)
+    if ilma_alus_input == "lentokone":
+        kulutus_kaava1 = matkojen_etäisyys_km * 13
+        # print(f"Kulutus on {round(kulutus_kaava1)} litraa")
+        print(f"{valittu_kenttä[0]} - {matkan_päämäärä[0]} välillä kului bensaa {round(kulutus_kaava1)} ")
+    elif ilma_alus_input == "vesitaso":
+        kulutus_kaava2 = matkojen_etäisyys_km * 20
+        # print(f"Kulutus on {round(kulutus_kaava2)} litraa")
+        print(f"{valittu_kenttä[0]} - {matkan_päämäärä[0]} välillä kului bensaa {round(kulutus_kaava2)} ")
+    elif ilma_alus_input == "helikopteri":
+        kulutus_kaava3 = matkojen_etäisyys_km * 15
+        print(f"{valittu_kenttä[0]} - {matkan_päämäärä[0]} välillä kului bensaa {round(kulutus_kaava3)} ")
+        # print(f"Kulutus on {round(kulutus_kaava3)} litraa")
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    """if ilma_alus_input == "lentokone":"""
+
+
+
+
+
+
+
+
+
+
+
+
+elif user_answer == "E":
+    print("Lopetit pelin!")
+    print("Haluatko antaa palautetta? ")
+    print("Syötä K jos haluat antaa palautetta tai syötä E jos et halua antaa palautetta.")
+    user_help_answer = input("Haluatko antaa palautetta (K / E)? ").upper()
+    if user_help_answer == "K":
+        input("Anna palautetta: ")
+        print("Kiitos palautteesta!")
+    elif user_help_answer == "E":
+        print("Peli ohi")
+
+
+
+
+
+
+
+
+
+
