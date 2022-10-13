@@ -172,4 +172,4 @@ elif user_answer == "E":
 
 
 
-# Helvetti oikeestiii
+# Helvetti oikeesti
