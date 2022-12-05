@@ -72,6 +72,7 @@ html, body {
 
 
 .page-header, .page-footer {
+    background-image: url("../img/bg1.png");
     background-color: var(--black);
     color: var(--white);
     padding: 1rem;
@@ -240,5 +241,4 @@ main {
     border-radius: 50%;
     border: 5px solid rgba(255, 255, 255, 0.5);
 }
-
 

@@ -11,7 +11,7 @@
     <script type="module" src="https://cdn.jsdelivr.net/npm/ionicons/dist/ionicons/ionicons.esm.js" defer></script>
     <script nomodule src="https://cdn.jsdelivr.net/npm/ionicons/dist/ionicons/ionicons.js" defer></script>
     <script src="js/main.js" defer></script>
-    <title>Flight Game</title>
+    <title>Lentopeli</title>
 </head>
 
 <body>
@@ -19,9 +19,11 @@
     <header class="page-header">
         <h1 class="page-title">
             <ion-icon name="caret-forward-outline"></ion-icon>
-            Flight Game
+            Lentopeli
             <ion-icon name="caret-back-outline"></ion-icon>
         </h1>
+
+        <!-- Buttonit --->
         <nav>
             <ul class="flex-wrap space-evenly">
                 <li>
@@ -42,17 +44,17 @@
         <div class="boxes">
             <section class="box">
                 <header>
-                    <h2>Game Status</h2>
+                    <h2>Pelin tila</h2>
                 </header>
                 <table>
                     <tr>
                         <td colspan="2">
-                            <h3 id="player-name">Player Name</h3>
+                            <h3 id="player-name">Pelaajan nimi:</h3>
                         </td>
                     </tr>
                     <tr>
-                        <td>CO2 Consumed: <span id="consumed">999</span>kg</td>
-                        <td>Game Points: <span id="points">999</span> points</td>
+                        <td>CO2 Kulutettu: <span id="consumed">999</span>kg</td>
+                        <td>Pelin pisteet: <span id="points">999</span> points</td>
                     </tr>
                 </table>
 
@@ -60,20 +62,20 @@
             <section class="box">
                 <header>
                     <h2 id="current-airport-name">
-                         Current Airport
+                         Nykyinen lentokenttä
                     </h2>
                 </header>
                 <table id="weather">
                     <tr>
                         <td>
-                            Temmperature
+                            Lämpötila
                         </td>
                         <td>
                             <img id="start-weather-icon" src="https://openweathermap.org/img/wn/10d@2x.png"
                                  alt="Current weather">
                         </td>
                         <td>
-                            Wind
+                            Tuuli
                         </td>
                     </tr>
                     <tr>
@@ -92,20 +94,20 @@
             <section class="box">
                  <header>
                     <h2 id="end-airport-name">
-                        end airport name
+                        Kohde lentokenttä
                     </h2>
                 </header>
                 <table>
                     <tr>
                         <td>
-                            Temmperature
+                            Lämpötila
                         </td>
                         <td>
                             <img id="end-weather-icon" src="https://openweathermap.org/img/wn/10d@2x.png"
                                  alt="Current weather">
                         </td>
                         <td>
-                            Wind
+                            Tuuli
                         </td>
                     </tr>
                     <tr>
@@ -122,25 +124,37 @@
                 </table>
 
             </section>
+            <section class="box">
+                <header>
+                <ul class="flex-wrap space-evenly">
+                    <li>
+                        <a class="button button-white" href="index.html">Play</a>
+                    </li>
+                    <li>
+                        <a class="button button-white" href="about.html">Stop</a>
+                    </li>
+                </ul>
+                </header>
+            </section>
         </div>
     </main>
     <footer class="page-footer">
         <p>:)</p>
     </footer>
     <div class="game-over hide">
-        <h2>Game over</h2>
-        <p>Thanks for playing</p>
+        <h2>Peli päättyi</h2>
+        <p>Kiitos pelaamisesta!</p>
     </div>
 
 </div>
-
+<!--
 <div id="player-modal hide">
     <form id="player-form">
         <input id=player-input type="text" placeholder="Player name" required>
         <input type="submit" value="Start game">
     </form>
 </div>
-
+-->
 </body>
 
 </html>
