@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.8.0/dist/leaflet.css"/>
+    <link href="../static/css/style.css" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css')}}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='js/main.js')}}">
+    <script src="https://unpkg.com/leaflet@1.8.0/dist/leaflet.js" defer></script>
+    <script type="module" src="https://cdn.jsdelivr.net/npm/ionicons/dist/ionicons/ionicons.esm.js" defer></script>
+    <script nomodule src="https://cdn.jsdelivr.net/npm/ionicons/dist/ionicons/ionicons.js" defer></script>
+    <script src="../static/js/main.js" defer></script>
+
+    <title>Lentopeli</title>
+</head>
+
+<body>
+<div class="container">
+    <header class="page-header">
+        <h1 class="page-title">
+            <ion-icon name="caret-forward-outline"></ion-icon>
+            Lentopeli
+            <ion-icon name="caret-back-outline"></ion-icon>
+        </h1>
+
+        <!-- Buttonit --->
+        <nav>
+            <ul class="flex-wrap space-evenly">
+                <li>
+                    <a class="button button-white" href="/game">Flight Game</a>
+                </li>
+                <li>
+                    <a class="button button-white" href="/info">Info</a>
+                </li>
+            </ul>
+        </nav>
+
+    </header>
+    <main class="flex-wrap">
+        <div id="map">
+        </div>
+        <div class="boxes">
+            <section class="box">
+                <header>
+                    <h2>Pelin tila</h2>
+                </header>
+                <table>
+                    <tr>
+                        <td colspan="2">
+                            <h3 id="player-name">Pelaajan nimi:</h3>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>CO2 Kulutettu: {{co2_consumed}} kg</td>
+                        <td>Pelin pisteet: {{points}} points</td>
+                    </tr>
+                </table>
+
+            </section>
+            <section class="box">
+                <header>
+                    <h2 id="current-airport-name">
+                         Nykyinen lentokenttä:
+                        {{data1}}
+                    </h2>
+                </header>
+                <table id="weather">
+                    <tr>
+                        <td>
+                            Lähtökentät lat:
+                            {{starting_airport_lat}}
+                        </td>
+
+                        <td>
+                            Lähtökentän long:
+                            {{starting_airport_lon}}
+                        </td>
+                    </tr>
+                    <tr>
+
+
+                    </tr>
+                </table>
+            </section>
+            <section class="box">
+                 <header>
+                    <h2 id="end-airport-name">
+                        Kohde lentokenttä:
+                        {{data2}}
+                    </h2>
+                </header>
+                <table>
+                    <tr>
+                        <td id="destination_airport_lat">
+                            Kohde lentokenttä lat:
+                            {{destination_airport_lat}}
+                        </td>
+
+                        <td>
+                            Kohde lentokenttä lon:
+                            {{destination_airport_lon}}
+                        </td>
+                    </tr>
+
+                </table>
+
+            </section>
+            <section class="box">
+                <header>
+                    <h2>
+                        Lähtö kentän ja kohde kentän etäisyys
+                    </h2>
+
+                </header>
+                <table>
+                    <tr>
+                        <td class="start_destination_distance">
+                            {{distance_between}} km
+                        </td>
+                    </tr>
+                </table>
+            </section>
+            <section class="box">
+                <header>
+                <ul class="flex-wrap space-evenly">
+                    <li>
+                        <a class="button button-white" href="/play">Play</a>
+                    </li>
+                    <li>
+                        <a class="button button-white" href="/stop">Stop</a>
+                    </li>
+                </ul>
+                </header>
+            </section>
+        </div>
+    </main>
+    <footer class="page-footer">
+        <p>Flight game by Tomi and Benjamin</p>
+    </footer>
+    <div class="game-over hide">
+        <h2>Peli päättyi</h2>
+        <p>Kiitos pelaamisesta!</p>
+    </div>
+
+</div>
+<!--
+<div id="player-modal hide">
+    <form id="player-form">
+        <input id=player-input type="text" placeholder="Player name" required>
+        <input type="submit" value="Start game">
+    </form>
+</div>
+-->
+</body>
+
+</html>

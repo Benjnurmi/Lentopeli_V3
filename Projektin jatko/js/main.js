@@ -68,7 +68,6 @@ async function  gameSetup() {
         } else {
           marker.setIcon(blueIcon)
         }
-
     }
 
   } catch (error) {

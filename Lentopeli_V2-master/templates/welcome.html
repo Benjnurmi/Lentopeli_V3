@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <title>Flight Game</title>
+    <link rel="stylesheet" href="../static/css/welcome.css">
+</head>
+<body>
+
+    <div class="wrapper">
+      <div class="input-data">
+        <form>
+          <input type="submit" value="Submit" id="name" required>
+          <label>Name</label>
+          <!---<input type="submit" value="Submit">--->
+        </form>
+      </div>
+      <div class="btn">
+          <a class="button" href="/game">Play</a>
+      </div>
+    </div>
+
+<script>
+  // Get the form element
+  var form = document.querySelector('form');
+
+  // Add an event listener to the form to save the input value to the local storage when the user submits the form
+  form.addEventListener('submit', function(e) {
+    e.preventDefault();  // Prevent the form from being submitted
+
+    var name = document.getElementById('name').value;  // Get the input value
+
+    // Save the input value to the local storage
+    localStorage.setItem('name', name);
+  });
+</script>
+
+</body>
+</html>
